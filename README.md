@@ -35,13 +35,13 @@ $ git remote add origin https://github.com/${GITHUB_USERNAME}/lab05 #подкл�
 Вносим параметры в конфиг файла для travis-ci - .travis.yml
 ```ShellSession
 $ cat > .travis.yml <<EOF
-language: cpp #Показываем что язык программирования с++
+language: cpp #показываем что язык программирования с++
 EOF
 ```
 
 ```ShellSession
-$ cat >> .travis.yml <<EOF
-
+$ cat >> .travis.yml <<EOF 
+#параметр script отвечает за дальнейшую сборку проекта
 script:
 - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
 - cmake --build _build
@@ -51,7 +51,7 @@ EOF
 
 ```ShellSession
 $ cat >> .travis.yml <<EOF
-
+#вносим различные пакеты для сборки проекта
 addons:
   apt:
     sources:
@@ -63,34 +63,34 @@ EOF
 ```
 
 ```ShellSession
-$ travis login --github-token ${GITHUB_TOKEN}
+$ travis login --github-token ${GITHUB_TOKEN} #авторизуемся своим GITHUB аккаунтом, используя созданный нами токен
 ```
-
+отображаем предупреждения или ошибки в файле .travis.yml
 ```ShellSession
 $ travis lint
 ```
-
+вносим изменения в REAMDE.md
 ```ShellSession
 $ ex -sc '1i|<фрагмент_вставки_значка>' -cx README.md
 ```
 
 ```ShellSession
-$ git add .travis.yml
-$ git add README.md
-$ git commit -m"added CI"
-$ git push origin master
+$ git add .travis.yml #добавляем .travis.yml в подтвержденные файлы
+$ git add README.md #добавляем README.md в подтвержденные файлы
+$ git commit -m"added CI" #создаем коммит
+$ git push origin master #выгружаем локальную репозиторий в удаленный репозиторий 5 лабораторной
 ```
 
 ```ShellSession
-$ travis lint
-$ travis accounts
-$ travis sync
-$ travis repos
-$ travis enable
-$ travis whatsup
-$ travis branches
-$ travis history
-$ travis show
+$ travis lint #отображаем предупреждения или ошибки в файле .travis.yml
+$ travis accounts #отображаем список аккаунтов
+$ travis sync #обновляем информацию о пользователях и репозиториях
+$ travis repos #выводим список репозиториев
+$ travis enable #с помощью этой команды мы можем активировать репозиторий в Travis
+$ travis whatsup #показываем последние изменения в репозиториях
+$ travis branches #показываем последние изменения в ветках
+$ travis history #отображем всю историю
+$ travis show #отображаем информацию о последней сборке проекта
 ```
 
 ## Report
